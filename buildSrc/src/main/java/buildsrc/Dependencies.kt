@@ -3,7 +3,7 @@ package buildsrc
 import org.gradle.api.JavaVersion
 
 object Versions {
-    const val minSdk = 24
+    const val minSdk = 26
     const val compileSdk = 34
     const val targetSdk = 34
     const val kotlin = "1.4.20"
@@ -18,6 +18,7 @@ object Versions {
         const val constraintlayout = "2.1.4"
         const val fragments = "1.5.7"
         const val navigation = "2.7.7"
+        const val splashScreen = "1.0.0"
     }
 
     object Google {
@@ -40,13 +41,11 @@ object Libs {
     object AndroidX {
         const val core = "androidx.core:core-ktx:${Versions.AndroidX.core}"
         const val appCompat = "androidx.appcompat:appcompat:${Versions.AndroidX.appCompat}"
-        const val constraintlayout =
-            "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constraintlayout}"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constraintlayout}"
         const val fragments = "androidx.fragment:fragment-ktx:${Versions.AndroidX.fragments}"
-        const val navigationFragmentKtx =
-            "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}"
-        const val navigationUiKtx =
-            "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}"
+        const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}"
+        const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}"
+        const val splashScreen = "androidx.core:core-splashscreen:${Versions.AndroidX.splashScreen}"
     }
 
     object Google {

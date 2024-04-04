@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "ru.avito.avitotest"
-        minSdk = Versions.versionCode
+        minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         versionCode = Versions.versionCode
         versionName = Versions.versionName
@@ -51,6 +51,7 @@ dependencies {
     implementation(Libs.AndroidX.fragments)
     implementation(Libs.AndroidX.navigationUiKtx)
     implementation(Libs.AndroidX.navigationFragmentKtx)
+    implementation(Libs.AndroidX.splashScreen)
 
     implementation(Libs.DI.dagger)
     kapt(Libs.DI.daggerCompiler)
