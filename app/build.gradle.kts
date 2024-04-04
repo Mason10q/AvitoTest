@@ -1,18 +1,22 @@
+import buildsrc.Libs
+import buildsrc.Versions
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "ru.avito.avitotest"
-    compileSdk = 34
+    compileSdk = Versions.compileSdk
 
     defaultConfig {
         applicationId = "ru.avito.avitotest"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Versions.versionCode
+        targetSdk = Versions.targetSdk
+        versionCode = Versions.versionCode
+        versionName = Versions.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,22 +31,40 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = Versions.compatibility
+        targetCompatibility = Versions.compatibility
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Versions.jvmTarget
+    }
+    viewBinding {
+        enable = true
     }
 }
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(Libs.AndroidX.core)
+    implementation(Libs.AndroidX.appCompat)
+    implementation(Libs.Google.material)
+    implementation(Libs.AndroidX.constraintlayout)
+    implementation(Libs.AndroidX.fragments)
+    implementation(Libs.AndroidX.navigationUiKtx)
+    implementation(Libs.AndroidX.navigationFragmentKtx)
+
+    implementation(Libs.DI.dagger)
+    kapt(Libs.DI.daggerCompiler)
+
+    implementation(Libs.Network.gson)
+
+    implementation(Libs.Network.ohttp)
+    implementation(platform(Libs.Network.okhttpBom))
+    implementation(Libs.Network.okhttpLogInter)
+
+    implementation(Libs.Network.retrofit)
+    implementation(Libs.Network.retrofitGson)
+    implementation(Libs.Network.retrofitRxJava3)
+
+    implementation(Libs.RxJava.rxJava)
+    implementation(Libs.RxJava.rxJavaAndroid)
 }
