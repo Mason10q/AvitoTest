@@ -20,6 +20,8 @@ data class TitleDto(
     val posterDto: PosterDto?,
     @SerializedName("countries")
     val counties: List<CountryDto>?,
-    val genre: String?,
-    val rating: Float?
+    @SerializedName("genres")
+    val genres: List<GenreDto>?,
+    @SerializedName("ageRating")
+    val rating: Double?
 )

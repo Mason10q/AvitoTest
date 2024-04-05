@@ -13,7 +13,7 @@ class TitleMapper @Inject constructor(): Mapper<Title, TitleDto> {
             item.alternativeName ?: "",
             item.year ?: 1970,
             item.counties?.get(0)?.name ?: "",
-            item.genre ?: "",
-            item.rating ?: 0.0f
+            item.genres?.get(0)?.name ?: "",
+            item.rating ?: 0.0
         )
 }

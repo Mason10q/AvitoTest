@@ -7,6 +7,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/titles_recycler"
         style="@style/MatchParent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

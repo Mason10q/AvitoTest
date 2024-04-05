@@ -7,5 +7,5 @@ data class Title(
     val year: Int,
     val country: String,
     val genre: String,
-    val rating: Float
+    val rating: Double
 )

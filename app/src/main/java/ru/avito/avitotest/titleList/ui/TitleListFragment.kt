@@ -24,7 +24,7 @@ class TitleListFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        //inject()
+        inject()
         prepareObservers()
 
         binding.titlesRecycler.adapter = adapter
@@ -35,10 +35,10 @@ class TitleListFragment: Fragment() {
     }
 
 
-//    private fun inject() = DaggerTitleListComponent
-//        .builder()
-//        .build()
-//        .inject(this)
+    private fun inject() = DaggerTitleListComponent
+        .builder()
+        .build()
+        .inject(this)
 
     private fun prepareObservers() {
         viewModel.titles.observe(viewLifecycleOwner, adapter::addItems)

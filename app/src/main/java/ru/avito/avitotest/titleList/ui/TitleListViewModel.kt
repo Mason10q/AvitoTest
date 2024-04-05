@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.avito.avitotest.titleList.model.TitleListUseCase
-import ru.avito.avitotest.titleList.model.TitleListUseCaseImpl
 import ru.avito.avitotest.titleList.model.entities.Title
 import javax.inject.Inject
 

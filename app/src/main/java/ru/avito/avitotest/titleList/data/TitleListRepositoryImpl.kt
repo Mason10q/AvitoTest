@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class TitleListRepositoryImpl @Inject constructor(private val api: KinopoiskApi):
     TitleListRepository {
-    override fun getTitlesPage(pageNum: Int) = api.getTitlesPage(pageNum)
-        .subscribeOn(Schedulers.io())
+    override fun getTitlesPage(pageNum: Int)= api.getTitlesPage()
+            .subscribeOn(Schedulers.io())
 
 }
