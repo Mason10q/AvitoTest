@@ -31,4 +31,30 @@
         <item name="android:layout_height">0dp</item>
     </style>
 
+
+    <style name="Text" parent="MatchParentWrapContent"/>
+
+    <style name="Text.Title">
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:fontFamily">@font/kinopoisk_lc</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Text.Additional">
+        <item name="android:textSize">@dimen/additional_text_size</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="Text.Additional.Black">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Text.Additional.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Text.Additional.Silver">
+        <item name="android:textColor">@color/silver</item>
+    </style>
+
 </resources>

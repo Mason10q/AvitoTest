@@ -5,19 +5,21 @@ import com.google.gson.annotations.SerializedName
 
 data class TitleDto(
     @SerializedName("id")
-    val id: Int? = 0,
+    val id: Int?,
     @SerializedName("name")
-    val name: String? = "",
+    val name: String?,
     @SerializedName("alternativeName")
-    val alternativeName: String? = "",
+    val alternativeName: String?,
     @SerializedName("type")
-    val type: String? = "",
+    val type: String?,
     @SerializedName("year")
-    val year: Int? = 1970,
+    val year: Int?,
     @SerializedName("movieLength")
-    val length: Int? = 0,
+    val length: Int?,
     @SerializedName("poster")
     val posterDto: PosterDto?,
     @SerializedName("countries")
-    val counties: List<CountryDto>?
+    val counties: List<CountryDto>?,
+    val genre: String?,
+    val rating: Float?
 )

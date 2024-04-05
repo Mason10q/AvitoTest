@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    
+    <color name="white">#FEFEFEFE</color>
+    <color name="silver">#CBCBCE</color>
+    <color name="green">#2BC331</color>
+
     <color name="splash_orange">#FF5500</color>
     <color name="splash_green">#BDF700</color>
 </resources>
