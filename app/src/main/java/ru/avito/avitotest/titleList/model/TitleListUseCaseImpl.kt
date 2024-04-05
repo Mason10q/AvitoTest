@@ -15,6 +15,8 @@ class TitleListUseCaseImpl @Inject constructor(
 
     override fun getTitlesPage(pageNum: Int): Single<List<Title>> = repository.getTitlesPage(pageNum)
         .observeOn(AndroidSchedulers.mainThread())
-        .map{ titleMapper.map(it.titles) }
+        .map {
+            titleMapper.map(it.titles ?: throw NullPointerException("Titles is null"))
+        }
 
 }

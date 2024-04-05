@@ -32,8 +32,15 @@ object Versions {
     }
 
     const val dagger = "2.51"
-    const val rxJava = "3.1.8"
-    const val rxAndroid = "3.0.2"
+
+    object RxJava {
+        const val rxJava = "3.1.8"
+        const val rxAndroid = "3.0.2"
+    }
+
+    object UI {
+        const val picasso ="2.8"
+    }
 }
 
 object Libs {
@@ -73,7 +80,11 @@ object Libs {
     }
 
     object RxJava {
-        const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.rxJava}"
-        const val rxJavaAndroid = "io.reactivex.rxjava3:rxandroid:${Versions.rxAndroid}"
+        const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.RxJava.rxJava}"
+        const val rxJavaAndroid = "io.reactivex.rxjava3:rxandroid:${Versions.RxJava.rxAndroid}"
+    }
+
+    object UI {
+        const val picasso = "com.squareup.picasso:picasso:${Versions.UI.picasso}"
     }
 }

@@ -5,12 +5,16 @@ import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ru.avito.avitotest.titleList.model.entities.Title
 import ru.avito.avitotest.R
 import ru.avito.avitotest.databinding.ItemTitleBinding
+import javax.inject.Inject
 
 class TitleListAdapter(private val resources: Resources) :
     RecyclerView.Adapter<TitleListAdapter.ViewHolder>() {
+
+    @Inject lateinit var picasso: Picasso
 
     private val titles = ArrayList<Title>()
 
@@ -33,10 +37,10 @@ class TitleListAdapter(private val resources: Resources) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Title) {
             with(binding) {
+                picasso.load(item.posterPreviewUrl).into(posterImage)
                 titleName.text = item.name
                 titleRating.text = item.rating.toString()
-                titleCountryGenre.text =
-                    resources.getString(R.string.country_genre, item.country, item.genre)
+                titleCountryGenre.text = resources.getString(R.string.country_genre, item.country, item.genre)
 
                 if (item.alternativeName != "") {
                     titleNameYear.text = resources.getString(R.string.name_year, item.alternativeName, item.year)

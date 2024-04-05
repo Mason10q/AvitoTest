@@ -22,6 +22,6 @@ data class TitleDto(
     val counties: List<CountryDto>?,
     @SerializedName("genres")
     val genres: List<GenreDto>?,
-    @SerializedName("ageRating")
-    val rating: Double?
+    @SerializedName("rating")
+    val rating: RatingDto?
 )

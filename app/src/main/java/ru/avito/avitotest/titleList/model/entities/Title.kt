@@ -7,5 +7,6 @@ data class Title(
     val year: Int,
     val country: String,
     val genre: String,
-    val rating: Double
+    val rating: Double,
+    val posterPreviewUrl: String
 )

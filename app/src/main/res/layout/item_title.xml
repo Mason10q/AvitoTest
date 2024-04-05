@@ -9,8 +9,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/poster"
-            style="@style/WrapContent"
-            android:layout_marginVertical="10dp"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/info"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,8 +30,10 @@
             <TextView
                 android:id="@+id/title_rating"
                 style="@style/Text.Additional.White"
-                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
                 android:background="@color/green"
+                android:layout_margin="10dp"
+                android:paddingHorizontal="5dp"
                 android:text="9.0"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintVertical_bias="0.0"
@@ -45,7 +48,8 @@
 
         <LinearLayout
             android:id="@+id/info"
-            style="@style/WrapContent0dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +71,6 @@
             <TextView
                 android:id="@+id/title_country_genre"
                 style="@style/Text.Additional.Silver"
-                android:inputType="textMultiLine"
                 android:text="Франция • драма"/>
 
         </LinearLayout>

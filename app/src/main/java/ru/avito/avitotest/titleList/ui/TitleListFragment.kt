@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import ru.avito.avitotest.core.di.AndroidModule
 import ru.avito.avitotest.databinding.FragmentTitlesListBinding
 import ru.avito.avitotest.titleList.di.DaggerTitleListComponent
 import javax.inject.Inject
@@ -37,8 +38,12 @@ class TitleListFragment: Fragment() {
 
     private fun inject() = DaggerTitleListComponent
         .builder()
+        .androidModule(AndroidModule(context ?: throw NullPointerException("Context is null")))
         .build()
-        .inject(this)
+        .apply {
+            inject(this@TitleListFragment)
+            inject(adapter)
+        }
 
     private fun prepareObservers() {
         viewModel.titles.observe(viewLifecycleOwner, adapter::addItems)
