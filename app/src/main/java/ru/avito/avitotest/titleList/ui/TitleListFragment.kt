@@ -35,8 +35,13 @@ class TitleListFragment: Fragment() {
         viewModel.getTitlesPage()
         viewModel.getAllFilters()
 
-        binding.showDialog.setOnClickListener{
+        filterDialog.setOnCancelListener {
+            binding.filterButton.isEnabled = true
+        }
+
+        binding.filterButton.setOnClickListener{
             filterDialog.show(parentFragmentManager, "")
+            binding.filterButton.isEnabled = false
         }
 
         return binding.root
@@ -54,8 +59,10 @@ class TitleListFragment: Fragment() {
 
     private fun prepareObservers() {
         viewModel.titles.observe(viewLifecycleOwner, adapter::addItems)
-
-        viewModel.filters.observe(viewLifecycleOwner, filterDialog::addFilters)
+        viewModel.filters.observe(viewLifecycleOwner) { filters ->
+            filterDialog.addFilters(filters)
+            binding.filterButton.visibility = View.VISIBLE
+        }
     }
 
 }

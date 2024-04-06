@@ -1,5 +1,6 @@
 package ru.avito.avitotest.titleList.ui
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ private const val COLLAPSED_HEIGHT = 228
 class FilterDialog : BottomSheetDialogFragment() {
 
     private val adapter = FilterGroupAdapter()
+
+    private var onCancelListener = {}
     override fun getTheme() = R.style.BottomDialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -40,8 +43,17 @@ class FilterDialog : BottomSheetDialogFragment() {
 
     }
 
+    override fun onCancel(dialog: DialogInterface) {
+        super.onCancel(dialog)
+        onCancelListener.invoke()
+    }
+
     fun addFilters(filters: List<Filter>) {
         adapter.addItems(filters)
+    }
+
+    fun setOnCancelListener(listener: () -> Unit) {
+        onCancelListener = listener
     }
 
 }

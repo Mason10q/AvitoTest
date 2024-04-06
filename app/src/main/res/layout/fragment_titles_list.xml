@@ -14,12 +14,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/show_dialog"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="10dp"
+    <LinearLayout
+        style="@style/WrapContent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20dp">
+
+        <ImageButton
+            android:id="@+id/filter_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="visible"
+            android:scaleType="centerInside"
+            android:padding="10dp"
+            android:src="@drawable/ic_filter"
+            android:layout_margin="10dp"
+            android:background="@drawable/background_action_button"/>
+
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="visible"
+            android:scaleType="centerInside"
+            android:padding="10dp"
+            android:src="@drawable/ic_search"
+            android:layout_margin="10dp"
+            android:background="@drawable/background_action_button"/>
+
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

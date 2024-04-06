@@ -11,10 +11,11 @@
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/filter_group_recycler">
 
         <View
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/background_gray_line"/>

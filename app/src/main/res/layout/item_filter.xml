@@ -2,15 +2,17 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/WrapContent"
-    app:cardCornerRadius="4dp">
+    app:cardCornerRadius="15dp"
+    app:cardBackgroundColor="@color/light_gray">
 
 
     <TextView
         android:id="@+id/filter_name"
         style="@style/Text.Title"
+        android:textSize="15sp"
         android:text="Франция"
-        android:padding="8dp"
-        android:background="@color/gray"/>
+        android:gravity="center"
+        android:padding="8dp" />
 
 
 </androidx.cardview.widget.CardView>

@@ -16,16 +16,16 @@ class FilterUseCaseImpl @Inject constructor(
 ): FilterUseCase {
     override fun getAllGenres(): Single<Filter> = repository.getAllGenres()
         .observeOn(AndroidSchedulers.mainThread())
-        .map { Filter(FilterTypes.GENRES.name, filterMapper.map(it)) }
+        .map { Filter(FilterTypes.GENRES.title, filterMapper.map(it)) }
 
 
     override fun getAllCountries(): Single<Filter> = repository.getAllCountries()
         .observeOn(AndroidSchedulers.mainThread())
-        .map { Filter(FilterTypes.COUNTRIES.name, filterMapper.map(it)) }
+        .map { Filter(FilterTypes.COUNTRIES.title, filterMapper.map(it)) }
 
     override fun getAllTypes(): Single<Filter> = repository.getAllTypes()
         .observeOn(AndroidSchedulers.mainThread())
-        .map { Filter(FilterTypes.TYPES.name, filterMapper.map(it)) }
+        .map { Filter(FilterTypes.TYPES.title, filterMapper.map(it)) }
 
     override fun getAllFilters(): Single<List<Filter>> = Single.zip(
         getAllGenres(),
