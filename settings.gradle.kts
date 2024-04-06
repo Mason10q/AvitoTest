@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "AvitoTest"
 include(":app")
+
+gradle.startParameter.excludedTaskNames.addAll(listOf(":buildSrc:testClasses"))

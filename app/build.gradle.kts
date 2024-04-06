@@ -1,5 +1,7 @@
 import buildsrc.Libs
 import buildsrc.Versions
+import org.jetbrains.kotlin.fir.declarations.builder.buildField
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -19,6 +21,11 @@ android {
         versionName = Versions.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+
+        buildConfigField("String", "API_KEY", "\"${properties.getProperty("API_KEY")}\"")
     }
 
     buildTypes {
@@ -39,6 +46,10 @@ android {
     }
     viewBinding {
         enable = true
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 

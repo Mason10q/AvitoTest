@@ -5,10 +5,12 @@ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit.Builder
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.avito.avitotest.BuildConfig
 import ru.avito.avitotest.network.KinopoiskApi
 import ru.avito.avitotest.network.retrofit.buildApi
 import java.util.concurrent.TimeUnit
@@ -25,6 +27,13 @@ class NetworkModule {
         .addInterceptor(HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         })
+        .addNetworkInterceptor { chain ->
+            chain.proceed(
+                chain.request().newBuilder()
+                .header("X-API-KEY", BuildConfig.API_KEY)
+                .build()
+            )
+        }
         .readTimeout(100, TimeUnit.SECONDS)
         .build()
 
