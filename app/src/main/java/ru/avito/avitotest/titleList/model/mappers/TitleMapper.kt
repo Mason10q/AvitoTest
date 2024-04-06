@@ -1,4 +1,4 @@
-package ru.avito.avitotest.titleList.model
+package ru.avito.avitotest.titleList.model.mappers
 
 import ru.avito.avitotest.titleList.model.entities.Title
 import ru.avito.avitotest.core.Mapper

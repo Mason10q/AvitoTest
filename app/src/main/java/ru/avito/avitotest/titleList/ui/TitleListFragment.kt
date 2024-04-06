@@ -16,6 +16,8 @@ class TitleListFragment: Fragment() {
     private val binding by lazy { FragmentTitlesListBinding.inflate(layoutInflater) }
     private val adapter by lazy { TitleListAdapter(resources) }
 
+    private val filterDialog = FilterDialog()
+
     @Inject lateinit var factory: ViewModelProvider.Factory
 
     private val viewModel by lazy { ViewModelProvider(this, factory)[TitleListViewModel::class.java] }
@@ -31,6 +33,11 @@ class TitleListFragment: Fragment() {
         binding.titlesRecycler.adapter = adapter
 
         viewModel.getTitlesPage()
+        viewModel.getAllFilters()
+
+        binding.showDialog.setOnClickListener{
+            filterDialog.show(parentFragmentManager, "")
+        }
 
         return binding.root
     }
@@ -47,6 +54,8 @@ class TitleListFragment: Fragment() {
 
     private fun prepareObservers() {
         viewModel.titles.observe(viewLifecycleOwner, adapter::addItems)
+
+        viewModel.filters.observe(viewLifecycleOwner, filterDialog::addFilters)
     }
 
 }

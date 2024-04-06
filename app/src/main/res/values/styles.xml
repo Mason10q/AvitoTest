@@ -57,4 +57,13 @@
         <item name="android:textColor">@color/silver</item>
     </style>
 
+    <style name="BottomDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalSheet</item>
+    </style>
+
+    <style name="ModalSheet" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/background_dialog_filter</item>
+    </style>
+
+
 </resources>

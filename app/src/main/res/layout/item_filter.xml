@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/WrapContent"
+    app:cardCornerRadius="4dp">
+
+
+    <TextView
+        android:id="@+id/filter_name"
+        style="@style/Text.Title"
+        android:text="Франция"
+        android:padding="8dp"
+        android:background="@color/gray"/>
+
+
+</androidx.cardview.widget.CardView>

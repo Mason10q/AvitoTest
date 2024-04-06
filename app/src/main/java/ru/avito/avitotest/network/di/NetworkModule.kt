@@ -11,6 +11,7 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.avito.avitotest.network.KinopoiskApi
 import ru.avito.avitotest.network.retrofit.buildApi
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -24,6 +25,7 @@ class NetworkModule {
         .addInterceptor(HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         })
+        .readTimeout(100, TimeUnit.SECONDS)
         .build()
 
     @Singleton
