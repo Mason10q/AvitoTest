@@ -7,4 +7,6 @@ interface TitleListUseCase {
 
     fun getTitlesPage(pageNum: Int): Single<List<Title>>
 
+    fun search(query: String): Single<List<Title>>
+
 }

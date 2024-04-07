@@ -30,10 +30,12 @@ class TitleListViewModel @Inject constructor(
 
     fun getAllFilters() = filterUseCase.getAllFilters()
         .subscribe({filters ->
-            Log.d("asd", filters.toString())
            _filters.postValue(filters)
-        }, {
-            Log.d("asd", it.message.toString())
-        })
+        }, {})
+
+    fun search(query: String) = titleUseCase.search(query)
+        .subscribe({titles ->
+           _titles.postValue(titles)
+        }, {})
 
 }

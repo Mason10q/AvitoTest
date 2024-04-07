@@ -14,4 +14,6 @@ interface TitleListRepository {
     fun getAllCountries(): Single<List<FilterDto>>
 
     fun getAllTypes(): Single<List<FilterDto>>
+
+    fun search(query: String): Single<DocsDto>
 }

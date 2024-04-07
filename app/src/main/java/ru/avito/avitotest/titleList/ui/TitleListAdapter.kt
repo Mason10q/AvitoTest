@@ -9,6 +9,7 @@ import com.squareup.picasso.Picasso
 import ru.avito.avitotest.titleList.model.entities.Title
 import ru.avito.avitotest.R
 import ru.avito.avitotest.databinding.ItemTitleBinding
+import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class TitleListAdapter(private val resources: Resources) :
@@ -32,12 +33,23 @@ class TitleListAdapter(private val resources: Resources) :
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun restoreItems(items: List<Title>) {
+        titles.clear()
+        titles.addAll(items)
+        notifyDataSetChanged()
+    }
+
 
     inner class ViewHolder(private val binding: ItemTitleBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Title) {
             with(binding) {
-                picasso.load(item.posterPreviewUrl).into(posterImage)
+                try {
+                    picasso.load(item.posterPreviewUrl).into(posterImage)
+                } catch (e: IllegalArgumentException) {
+                    posterImage.setImageResource(R.drawable.ic_kinopoisk)
+                }
                 titleName.text = item.name
                 titleRating.text = item.rating.toString()
                 titleCountryGenre.text = resources.getString(R.string.country_genre, item.country, item.genre)

@@ -3,6 +3,7 @@ package ru.avito.avitotest.network
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Query
 import ru.avito.avitotest.network.dtos.DocsDto
 import ru.avito.avitotest.network.dtos.FilterDto
 import ru.avito.avitotest.network.retrofit.EndpointUrl
@@ -21,5 +22,8 @@ interface KinopoiskApi {
 
     @GET("v1/movie/possible-values-by-field?field=type")
     fun getAllTypes(): Single<List<FilterDto>>
+
+    @GET("v1.4/movie/search?page=1&limit=10")
+    fun search(@Query("query") query: String): Single<DocsDto>
 
 }

@@ -19,4 +19,10 @@ class TitleListUseCaseImpl @Inject constructor(
             titleMapper.map(it.titles ?: throw NullPointerException("Titles is null"))
         }
 
+    override fun search(query: String): Single<List<Title>> = repository.search(query)
+        .observeOn(AndroidSchedulers.mainThread())
+        .map{
+            titleMapper.map(it.titles ?: throw NullPointerException("Titles is null"))
+        }
+
 }

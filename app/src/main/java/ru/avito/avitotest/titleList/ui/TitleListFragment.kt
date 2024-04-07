@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.avito.avitotest.core.di.AndroidModule
@@ -44,6 +45,8 @@ class TitleListFragment: Fragment() {
             binding.filterButton.isEnabled = false
         }
 
+        binding.searchButton.setOnInputListener(viewModel::search)
+
         return binding.root
     }
 
@@ -58,7 +61,7 @@ class TitleListFragment: Fragment() {
         }
 
     private fun prepareObservers() {
-        viewModel.titles.observe(viewLifecycleOwner, adapter::addItems)
+        viewModel.titles.observe(viewLifecycleOwner, adapter::restoreItems)
         viewModel.filters.observe(viewLifecycleOwner) { filters ->
             filterDialog.addFilters(filters)
             binding.filterButton.visibility = View.VISIBLE
