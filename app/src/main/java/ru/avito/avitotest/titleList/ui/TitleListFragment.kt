@@ -15,7 +15,7 @@ import javax.inject.Inject
 class TitleListFragment: Fragment() {
 
     private val binding by lazy { FragmentTitlesListBinding.inflate(layoutInflater) }
-    private val adapter by lazy { TitleListAdapter(resources) }
+    private val adapter = TitleListAdapter()
 
     private val filterDialog = FilterDialog()
 
