@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
@@ -31,6 +32,7 @@ class NetworkModule {
             chain.proceed(
                 chain.request().newBuilder()
                 .header("X-API-KEY", BuildConfig.API_KEY)
+                .header("accept", "application/json")
                 .build()
             )
         }

@@ -2,8 +2,7 @@ package ru.avito.avitotest.titleList.ui
 
 import android.content.Context
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.abstracttesting.adapter.BaseAdapter
+import ru.avito.avitotest.core.BaseAdapter
 import ru.avito.avitotest.R
 import ru.avito.avitotest.databinding.ItemFilterBinding
 import ru.avito.avitotest.databinding.ItemFilterGroupBinding

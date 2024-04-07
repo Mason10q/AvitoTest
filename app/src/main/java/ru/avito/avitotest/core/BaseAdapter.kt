@@ -1,4 +1,4 @@
-package com.example.abstracttesting.adapter
+package ru.avito.avitotest.core
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import ru.avito.avitotest.core.AdapterCallbacks
 
 abstract class BaseAdapter<DATA : Any, B : ViewBinding>(
     private val inflater: (LayoutInflater, ViewGroup, Boolean) -> B
