@@ -47,6 +47,8 @@ class CustomSearchView(context: Context, attributes: AttributeSet): ConstraintLa
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrEmpty()) return false
+
                 handler.removeCallbacksAndMessages(null)
 
                 handler.postDelayed({

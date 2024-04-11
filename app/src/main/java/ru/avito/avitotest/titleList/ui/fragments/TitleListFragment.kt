@@ -1,15 +1,16 @@
-package ru.avito.avitotest.titleList.ui
+package ru.avito.avitotest.titleList.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.avito.avitotest.core.di.AndroidModule
 import ru.avito.avitotest.databinding.FragmentTitlesListBinding
 import ru.avito.avitotest.titleList.di.DaggerTitleListComponent
+import ru.avito.avitotest.titleList.ui.TitleListViewModel
+import ru.avito.avitotest.titleList.ui.adapters.TitleListAdapter
 import javax.inject.Inject
 
 class TitleListFragment: Fragment() {
@@ -21,7 +22,7 @@ class TitleListFragment: Fragment() {
 
     @Inject lateinit var factory: ViewModelProvider.Factory
 
-    private val viewModel by lazy { ViewModelProvider(this, factory)[TitleListViewModel::class.java] }
+    private val viewModel by lazy { ViewModelProvider(requireActivity(), factory)[TitleListViewModel::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +39,7 @@ class TitleListFragment: Fragment() {
 
         filterDialog.setOnCancelListener {
             binding.filterButton.isEnabled = true
+            viewModel.getTitlesPage()
         }
 
         binding.filterButton.setOnClickListener{
@@ -61,7 +63,7 @@ class TitleListFragment: Fragment() {
         }
 
     private fun prepareObservers() {
-        viewModel.titles.observe(viewLifecycleOwner, adapter::restoreItems)
+        viewModel.titles.observe(viewLifecycleOwner, adapter::setItems)
         viewModel.filters.observe(viewLifecycleOwner) { filters ->
             filterDialog.addFilters(filters)
             binding.filterButton.visibility = View.VISIBLE

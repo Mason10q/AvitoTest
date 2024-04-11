@@ -1,8 +1,6 @@
-package ru.avito.avitotest.titleList.ui
+package ru.avito.avitotest.titleList.ui.adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.Resources
 import com.squareup.picasso.Picasso
 import ru.avito.avitotest.R
 import ru.avito.avitotest.core.BaseAdapter
@@ -14,13 +12,7 @@ import javax.inject.Inject
 class TitleListAdapter : BaseAdapter<Title, ItemTitleBinding>(ItemTitleBinding::inflate) {
 
     @Inject lateinit var picasso: Picasso
-
-    fun restoreItems(items: List<Title>) {
-        clearItems()
-        addItems(items)
-    }
-
-    override fun bindView(binding: ItemTitleBinding, item: Title, context: Context) {
+    override fun bindView(binding: ItemTitleBinding, item: Title) {
         with(binding) {
             try {
                 picasso.load(item.posterPreviewUrl).into(posterImage)
@@ -29,10 +21,10 @@ class TitleListAdapter : BaseAdapter<Title, ItemTitleBinding>(ItemTitleBinding::
             }
             titleName.text = item.name
             titleRating.text = item.rating.toString()
-            titleCountryGenre.text = context.resources.getString(R.string.country_genre, item.country, item.genre)
+            titleCountryGenre.text = binding.root.context.resources.getString(R.string.country_genre, item.country, item.genre)
 
             if (item.alternativeName != "") {
-                titleNameYear.text = context.resources.getString(R.string.name_year, item.alternativeName, item.year)
+                titleNameYear.text = binding.root.context.resources.getString(R.string.name_year, item.alternativeName, item.year)
             } else {
                 titleNameYear.text = item.year.toString()
             }

@@ -4,26 +4,21 @@ import com.google.gson.annotations.SerializedName
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 import ru.avito.avitotest.network.dtos.DocsDto
 import ru.avito.avitotest.network.dtos.FilterDto
 import ru.avito.avitotest.network.dtos.TitleDto
 import ru.avito.avitotest.network.retrofit.EndpointUrl
+import ru.avito.avitotest.network.retrofit.ProxyRetrofitQueryMap
 
 
 @EndpointUrl("https://api.kinopoisk.dev/")
 interface KinopoiskApi {
-
-    private fun getSerializedNames(dtoClass: Class<*>): List<String> = ArrayList<String>().apply {
-        dtoClass.declaredFields.forEach { field ->
-            field.getAnnotation(SerializedName::class.java)?.value?.let { this.add(it) }
-        }
-    }
-
-    private val titlePreviewFields: List<String>
-        get() = getSerializedNames(TitleDto::class.java)
-
     @GET("v1.4/movie?page=1&limit=10")
-    fun getTitlesPage(@Query("selectFields") fields: List<String> = titlePreviewFields): Single<DocsDto>
+    fun getTitlesPage(
+        @QueryMap filters: ProxyRetrofitQueryMap,
+        @Query("selectFields") fields: List<String>
+    ): Single<DocsDto>
 
     @GET("v1/movie/possible-values-by-field?field=genres.name")
     fun getAllGenres(): Single<List<FilterDto>>
@@ -37,7 +32,8 @@ interface KinopoiskApi {
     @GET("v1.4/movie/search?page=1&limit=10")
     fun search(
         @Query("query") query: String,
-        @Query("selectFields") fields: List<String> = titlePreviewFields
-        ): Single<DocsDto>
+        @QueryMap filters: ProxyRetrofitQueryMap,
+        @Query("selectFields") fields: List<String>
+    ): Single<DocsDto>
 
 }

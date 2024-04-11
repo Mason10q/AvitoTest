@@ -1,6 +1,5 @@
 package ru.avito.avitotest.titleList.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,9 +20,11 @@ class TitleListViewModel @Inject constructor(
     private val _filters = MutableLiveData<List<Filter>>()
     val filters: LiveData<List<Filter>> = _filters
 
+    private val filtersMap = HashMap<String, MutableList<String>>()
+
     private val currentPage = 1
 
-    fun getTitlesPage() = titleUseCase.getTitlesPage(currentPage)
+    fun getTitlesPage() = titleUseCase.getTitlesPage(currentPage, filtersMap)
         .subscribe({ titles ->
             _titles.postValue(titles)
         }, {})
@@ -33,9 +34,27 @@ class TitleListViewModel @Inject constructor(
            _filters.postValue(filters)
         }, {})
 
-    fun search(query: String) = titleUseCase.search(query)
+    fun search(query: String) = titleUseCase.search(query, filtersMap)
         .subscribe({titles ->
            _titles.postValue(titles)
         }, {})
 
+
+    fun addFilter(key: String, value: String) {
+        if(filtersMap.containsKey(key)){
+            filtersMap[key]?.add(value)
+        } else {
+            filtersMap[key] = mutableListOf(value)
+        }
+    }
+
+    fun deleteFilter(key: String, value: String) {
+        filtersMap[key]?.remove(value)
+    }
+
+    fun addRangeFilter(key: String, value: String) {
+        filtersMap[key] = mutableListOf(value)
+    }
+
+    fun getFilterMap() = filtersMap
 }

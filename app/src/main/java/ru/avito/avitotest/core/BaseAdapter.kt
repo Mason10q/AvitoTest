@@ -2,7 +2,9 @@ package ru.avito.avitotest.core
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Resources
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
@@ -11,16 +13,19 @@ abstract class BaseAdapter<DATA : Any, B : ViewBinding>(
     private val inflater: (LayoutInflater, ViewGroup, Boolean) -> B
 ) : RecyclerView.Adapter<BaseAdapter.ViewHolder<DATA, B>>() {
 
-    private val items = mutableListOf<DATA>()
+    protected val items = mutableListOf<DATA>()
 
-    abstract fun bindView(binding: B, item: DATA, context: Context)
+    abstract fun bindView(binding: B, item: DATA)
+
+    open fun onClick(view: View, item: DATA, position: Int) {}
 
     private val callbacks = object : AdapterCallbacks<DATA, B> {
-        override fun bindViews(binding: B, item: DATA, context: Context) =
-            bindView(binding, item, context)
+        override fun bindViews(binding: B, item: DATA) =
+            bindView(binding, item)
+
+        override fun onViewClicked(view: View, item: DATA, position: Int) = onClick(view, item, position)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun setItems(items: List<DATA>) {
         this.items.clear()
         this.items.addAll(items)
@@ -45,7 +50,7 @@ abstract class BaseAdapter<DATA : Any, B : ViewBinding>(
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder<DATA, B> =
         ViewHolder(
-            inflater(LayoutInflater.from(parent.context), parent, false), callbacks, parent.context
+            inflater(LayoutInflater.from(parent.context), parent, false), callbacks
         )
 
     override fun getItemCount(): Int = items.size
@@ -55,13 +60,12 @@ abstract class BaseAdapter<DATA : Any, B : ViewBinding>(
 
     class ViewHolder<DATA : Any, B : ViewBinding>(
         private val binding: B,
-        private val callbacks: AdapterCallbacks<DATA, B>,
-        private val context: Context
+        private val callbacks: AdapterCallbacks<DATA, B>
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: DATA, position: Int) {
-            callbacks.bindViews(binding, item, context)
-            binding.root.setOnClickListener { callbacks.onViewClicked(binding.root, item) }
+            callbacks.bindViews(binding, item)
+            binding.root.setOnClickListener { callbacks.onViewClicked(binding.root, item, position) }
         }
 
     }

@@ -1,4 +1,4 @@
-package ru.avito.avitotest.titleList.ui
+package ru.avito.avitotest.titleList.ui.adapters
 
 import android.graphics.Rect
 import android.view.View

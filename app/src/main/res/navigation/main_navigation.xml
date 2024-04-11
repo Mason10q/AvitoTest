@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/titleListFragment"
-        android:name="ru.avito.avitotest.titleList.ui.TitleListFragment"
+        android:name="ru.avito.avitotest.titleList.ui.fragments.TitleListFragment"
         android:label="TitleListFragment" />
 </navigation>
