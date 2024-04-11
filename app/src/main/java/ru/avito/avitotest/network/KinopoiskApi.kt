@@ -32,7 +32,6 @@ interface KinopoiskApi {
     @GET("v1.4/movie/search?page=1&limit=10")
     fun search(
         @Query("query") query: String,
-        @QueryMap filters: ProxyRetrofitQueryMap,
         @Query("selectFields") fields: List<String>
     ): Single<DocsDto>
 

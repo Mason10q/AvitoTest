@@ -29,7 +29,7 @@ class TitleListRepositoryImpl @Inject constructor(private val api: KinopoiskApi)
         .subscribeOn(Schedulers.io())
 
     override fun search(query: String, filters: ProxyRetrofitQueryMap): Single<DocsDto> =
-        api.search(query, filters, getSerializedNames(TitleDto::class.java))
+        api.search(query, getSerializedNames(TitleDto::class.java))
             .subscribeOn(Schedulers.io())
 
     private fun getSerializedNames(dtoClass: Class<*>): List<String> = ArrayList<String>().apply {
