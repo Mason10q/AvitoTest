@@ -56,5 +56,5 @@ class TitleListViewModel @Inject constructor(
         filtersMap[key] = mutableListOf(value)
     }
 
-    fun getFilterMap() = filtersMap
+    fun getFilterMap(): Map<String, List<String>> = filtersMap
 }

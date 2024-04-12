@@ -15,21 +15,21 @@ class TitleListRepositoryImpl @Inject constructor(private val api: KinopoiskApi)
     TitleListRepository {
 
     override fun getTitlesPage(pageNum: Int, filters: ProxyRetrofitQueryMap) =
-        api.getTitlesPage(filters, getSerializedNames(TitleDto::class.java))
+        api.getTitlesPage(filters = filters, fields = getSerializedNames(TitleDto::class.java))
             .subscribeOn(Schedulers.io())
 
 
-    override fun getAllGenres(): Single<List<FilterDto>> = api.getAllGenres()
+    override fun getAllGenres(): Single<List<FilterDto>> = api.getFilters("genres.name")
         .subscribeOn(Schedulers.io())
 
-    override fun getAllCountries(): Single<List<FilterDto>> = api.getAllCountries()
+    override fun getAllCountries(): Single<List<FilterDto>> = api.getFilters("countries.name")
         .subscribeOn(Schedulers.io())
 
-    override fun getAllTypes(): Single<List<FilterDto>> = api.getAllTypes()
+    override fun getAllTypes(): Single<List<FilterDto>> = api.getFilters("type")
         .subscribeOn(Schedulers.io())
 
     override fun search(query: String, filters: ProxyRetrofitQueryMap): Single<DocsDto> =
-        api.search(query, getSerializedNames(TitleDto::class.java))
+        api.search(query = query)
             .subscribeOn(Schedulers.io())
 
     private fun getSerializedNames(dtoClass: Class<*>): List<String> = ArrayList<String>().apply {
