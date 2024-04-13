@@ -4,72 +4,73 @@ import android.content.Context
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import com.livermor.delegateadapter.delegate.ViewBindingDelegateAdapter
 import ru.avito.avitotest.core.BaseAdapter
 import ru.avito.avitotest.R
 import ru.avito.avitotest.databinding.ItemFilterBinding
 import ru.avito.avitotest.databinding.ItemFilterGroupBinding
 import ru.avito.avitotest.titleList.model.entities.Filter
+import ru.avito.avitotest.titleList.model.entities.FilterName
 
-class FilterGroupAdapter :
-    BaseAdapter<Filter, ItemFilterGroupBinding>(ItemFilterGroupBinding::inflate) {
+class FilterTitleAdapter :
+    ViewBindingDelegateAdapter<String, ItemFilterGroupBinding>(ItemFilterGroupBinding::inflate) {
 
-    private var onItemClick: (String, String, Boolean) -> Unit = { _, _, _ -> }
+    override fun isForViewType(item: Any): Boolean = item is String
 
-    private var allChecked = mapOf<String, List<String>>()
+    override fun ItemFilterGroupBinding.onBind(item: String) {
+        this.filterType.text = item
+    }
 
-    override fun bindView(binding: ItemFilterGroupBinding, item: Filter) {
-        val adapter = FilterAdapter()
-        adapter.serverName = item.serverName
-        binding.filterType.text = item.title
-        binding.filterRecycler.adapter = adapter
-        binding.filterRecycler.layoutManager = GridLayoutManager(binding.root.context, 2)
-        adapter.setItems(item.filterNames)
-        binding.filterRecycler.addItemDecoration(
-            SpaceItemDecorator(binding.root.context.resources.getDimensionPixelOffset(R.dimen.item_space))
-        )
+    override fun String.getItemId(): Any = this
 
-        if(!allChecked[item.serverName].isNullOrEmpty()) {
-            adapter.checked.addAll(allChecked[item.serverName] ?: listOf())
+}
+
+
+class FilterAdapter :
+    ViewBindingDelegateAdapter<FilterName, ItemFilterBinding>(ItemFilterBinding::inflate) {
+
+    private var checked = arrayListOf<String>()
+
+    private var onItemClick: (FilterName, Boolean) -> Unit = { _, _ ->}
+
+    private fun onItemClick(item: FilterName) {
+        if(item.name in checked) {
+            checked.remove(item.name)
+        } else {
+            checked.add(item.name)
+        }
+
+        onItemClick(item, item.name in checked)
+    }
+
+    private fun getColor(context: Context, colorId: Int) =
+        ResourcesCompat.getColor(context.resources, colorId, null)
+
+    override fun isForViewType(item: Any): Boolean = item is FilterName
+
+    override fun ItemFilterBinding.onBind(item: FilterName) {
+        this.filterName.text = item.name
+
+        if (item.name in checked) {
+            this.root.setCardBackgroundColor(getColor(this.root.context, R.color.black))
+            this.filterName.setTextColor(getColor(this.root.context, R.color.white))
+        } else {
+            this.root.setCardBackgroundColor(getColor(this.root.context, R.color.silver))
+            this.filterName.setTextColor(getColor(this.root.context, R.color.black))
+        }
+
+        this.root.setOnClickListener {
+            onItemClick(item)
         }
     }
 
-    fun setChecked(checked: Map<String, List<String>>) {
-        this.allChecked = checked
+    override fun FilterName.getItemId(): Any = name
+
+    fun setCheckedItems(checked: Map<String, List<String>>) {
+        checked.values.forEach(this.checked::addAll)
     }
 
-    fun setOnClickListener(listener: (String, String, Boolean) -> Unit) {
+    fun setOnItemClickListener(listener: (FilterName, Boolean) -> Unit) {
         onItemClick = listener
     }
-
-    inner class FilterAdapter : BaseAdapter<String, ItemFilterBinding>(ItemFilterBinding::inflate) {
-
-        val checked = ArrayList<String>()
-        var serverName = ""
-
-        override fun bindView(binding: ItemFilterBinding, item: String) {
-            binding.filterName.text = item
-            if (item in checked) {
-                binding.root.setCardBackgroundColor(getColor(binding.root.context, R.color.black))
-                binding.filterName.setTextColor(getColor(binding.root.context, R.color.white))
-            } else {
-                binding.root.setCardBackgroundColor(getColor(binding.root.context, R.color.silver))
-                binding.filterName.setTextColor(getColor(binding.root.context, R.color.black))
-            }
-        }
-
-        override fun onClick(view: View, item: String, position: Int) {
-            onItemClick(serverName, item, item in checked)
-            if (item in checked) {
-                checked.remove(item)
-                notifyItemChanged(position)
-            } else {
-                checked.add(item)
-                notifyItemChanged(position)
-            }
-        }
-
-        private fun getColor(context: Context, colorId: Int) =
-            ResourcesCompat.getColor(context.resources, colorId, null)
-    }
-
 }

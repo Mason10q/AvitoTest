@@ -2,48 +2,42 @@ package ru.avito.avitotest.titleList.ui.adapters
 
 import android.content.Context
 import com.google.android.material.slider.RangeSlider
+import com.livermor.delegateadapter.delegate.ViewBindingDelegateAdapter
 import ru.avito.avitotest.core.BaseAdapter
 import ru.avito.avitotest.databinding.ItemRangeFilterBinding
 import ru.avito.avitotest.network.FilterTypes
 import ru.avito.avitotest.titleList.model.entities.RangeFilter
 import java.time.LocalDateTime
 
-class RangeFilterAdapter: BaseAdapter<RangeFilter, ItemRangeFilterBinding>(ItemRangeFilterBinding::inflate) {
+class RangeFilterAdapter: ViewBindingDelegateAdapter<RangeFilter, ItemRangeFilterBinding>(ItemRangeFilterBinding::inflate) {
 
-    private val onSliderTouchListener = object : RangeSlider.OnSliderTouchListener {
-        override fun onStartTrackingTouch(p0: RangeSlider) {}
+    private var onRangeChangedListener: (String, String) -> Unit = {_,_ ->}
 
-        override fun onStopTrackingTouch(p0: RangeSlider) {
-            onRangeChangedListener(p0.values[0], p0.values[1])
-        }
+    fun setOnRangeChangedListener(listener: (String, String) -> Unit) {
+        onRangeChangedListener = listener
     }
 
-    private var onRangeChangedListener: (Float, Float) -> Unit = {_,_ ->}
+    override fun isForViewType(item: Any): Boolean  = item is RangeFilter
 
-    init {
-        this.addItems(
-            listOf(
-                RangeFilter(FilterTypes.YEARS.title, FilterTypes.YEARS.serverName, 1970.0f, LocalDateTime.now().year.toFloat(), 1.0f),
-                RangeFilter(FilterTypes.RATING.title, FilterTypes.RATING.serverName, 1.0f, 9.0f, 0.1f),
-                RangeFilter(FilterTypes.AGE_RATING.title, FilterTypes.AGE_RATING.serverName, 0.0f, 21.0f, 1.0f),
-                RangeFilter(FilterTypes.MOVIE_LENGTH.title, FilterTypes.MOVIE_LENGTH.serverName, 10.0f, 300.0f, 1.0f)
-            )
-        )
-    }
-
-    override fun bindView(binding: ItemRangeFilterBinding, item: RangeFilter) {
-        with(binding) {
+    override fun ItemRangeFilterBinding.onBind(item: RangeFilter) {
+        with(this) {
             title.text = item.title
             slider.valueFrom = item.valueFrom
             slider.valueTo = item.valueTo
             slider.values = item.startValues
             slider.stepSize = item.stepSize
+
+            this.slider.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener {
+                override fun onStartTrackingTouch(p0: RangeSlider) {}
+
+                override fun onStopTrackingTouch(p0: RangeSlider) {
+                    onRangeChangedListener(item.serverName, "${p0.values[0]}-${p0.values[1]}")
+                }
+            })
         }
     }
 
 
-    fun setOnRangeChangedListener(listener: (Float, Float) -> Unit) {
-        onRangeChangedListener = listener
-    }
+    override fun RangeFilter.getItemId(): Any = this.title
 
 }

@@ -40,6 +40,7 @@ object Versions {
 
     object UI {
         const val picasso ="2.8"
+        const val delegateAdapter = "4.2"
     }
 }
 
@@ -86,5 +87,6 @@ object Libs {
 
     object UI {
         const val picasso = "com.squareup.picasso:picasso:${Versions.UI.picasso}"
+        const val delegateAdapter = "io.github.d00mch:delegateadapter:${Versions.UI.delegateAdapter}"
     }
 }

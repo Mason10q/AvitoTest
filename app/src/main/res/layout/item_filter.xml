@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/WrapContent"
+    style="@style/MatchParentWrapContent"
     app:cardCornerRadius="15dp"
     app:cardBackgroundColor="@color/light_gray">
 
@@ -9,10 +9,12 @@
     <TextView
         android:id="@+id/filter_name"
         style="@style/Text.Title"
+        android:layout_height="match_parent"
         android:textSize="15sp"
         android:text="Франция"
         android:gravity="center"
-        android:padding="8dp" />
+        android:foregroundGravity="center"
+        android:padding="8dp"/>
 
 
 </androidx.cardview.widget.CardView>

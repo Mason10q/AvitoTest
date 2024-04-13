@@ -7,25 +7,30 @@ import ru.avito.avitotest.network.dtos.FilterDto
 import ru.avito.avitotest.titleList.data.TitleListRepository
 import ru.avito.avitotest.titleList.model.entities.Filter
 import ru.avito.avitotest.network.FilterTypes
+import ru.avito.avitotest.titleList.model.entities.FilterName
 import javax.inject.Inject
 
 class FilterUseCaseImpl @Inject constructor(
-    private val repository: TitleListRepository,
-    private val filterMapper: Mapper<String, FilterDto>
+    private val repository: TitleListRepository
 ): FilterUseCase {
     override fun getAllGenres(): Single<Filter> = repository.getAllGenres()
         .observeOn(AndroidSchedulers.mainThread())
-        .map { Filter(FilterTypes.GENRES.title, FilterTypes.GENRES.serverName, filterMapper.map(it)) }
+        .map {filters ->
+            Filter(FilterTypes.GENRES.title, filters.map { FilterName(it.name ?: "", FilterTypes.GENRES.serverName) })
+        }
 
 
     override fun getAllCountries(): Single<Filter> = repository.getAllCountries()
         .observeOn(AndroidSchedulers.mainThread())
-        .map { Filter(FilterTypes.COUNTRIES.title, FilterTypes.COUNTRIES.serverName, filterMapper.map(it)) }
+        .map { filters ->
+            Filter(FilterTypes.COUNTRIES.title, filters.map { FilterName(it.name ?: "", FilterTypes.COUNTRIES.serverName) })
+        }
 
     override fun getAllTypes(): Single<Filter> = repository.getAllTypes()
         .observeOn(AndroidSchedulers.mainThread())
-        .map { Filter(FilterTypes.TYPES.title, FilterTypes.TYPES.serverName, filterMapper.map(it)) }
-
+        .map {filters ->
+            Filter(FilterTypes.TYPES.title, filters.map { FilterName(it.name ?: "", FilterTypes.TYPES.serverName) })
+        }
     override fun getAllFilters(): Single<List<Filter>> = Single.zip(
         getAllGenres(),
         getAllCountries(),

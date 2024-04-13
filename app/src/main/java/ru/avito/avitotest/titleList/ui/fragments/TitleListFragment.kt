@@ -13,7 +13,7 @@ import ru.avito.avitotest.titleList.ui.TitleListViewModel
 import ru.avito.avitotest.titleList.ui.adapters.TitleListAdapter
 import javax.inject.Inject
 
-class TitleListFragment: Fragment() {
+class TitleListFragment : Fragment() {
 
     private val binding by lazy { FragmentTitlesListBinding.inflate(layoutInflater) }
     private val adapter = TitleListAdapter()
@@ -65,7 +65,6 @@ class TitleListFragment: Fragment() {
     private fun prepareObservers() {
         viewModel.titles.observe(viewLifecycleOwner, adapter::setItems)
         viewModel.filters.observe(viewLifecycleOwner) { filters ->
-            filterDialog.addFilters(filters)
             binding.filterButton.visibility = View.VISIBLE
         }
     }

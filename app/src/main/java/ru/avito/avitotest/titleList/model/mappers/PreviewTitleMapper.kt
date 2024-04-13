@@ -6,7 +6,7 @@ import ru.avito.avitotest.core.round
 import ru.avito.avitotest.network.dtos.TitleDto
 import javax.inject.Inject
 
-class TitleMapper @Inject constructor(): Mapper<Title, TitleDto> {
+class PreviewTitleMapper @Inject constructor(): Mapper<Title, TitleDto> {
 
     override fun map(item: TitleDto): Title =
         Title(

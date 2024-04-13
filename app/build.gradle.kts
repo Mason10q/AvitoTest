@@ -81,4 +81,6 @@ dependencies {
     implementation(Libs.RxJava.rxJavaAndroid)
 
     implementation(Libs.UI.picasso)
+
+    implementation(Libs.UI.delegateAdapter)
 }
