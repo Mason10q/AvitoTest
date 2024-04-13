@@ -1,8 +1,16 @@
 package ru.avito.avitotest.titleList.model
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import ru.avito.avitotest.core.Mapper
+import ru.avito.avitotest.network.SearchPagingSource
+import ru.avito.avitotest.network.TitlePagingSource
 import ru.avito.avitotest.titleList.data.TitleListRepository
 import ru.avito.avitotest.titleList.model.entities.Title
 import ru.avito.avitotest.network.dtos.TitleDto
@@ -14,20 +22,21 @@ class TitleListUseCaseImpl @Inject constructor(
     private val titleMapper: Mapper<Title, TitleDto>
 ) : TitleListUseCase {
 
-    override fun getTitlesPage(
-        pageNum: Int,
-        filters: Map<String, List<String>>
-    ) = repository.getTitlesPage(pageNum, ProxyRetrofitQueryMap(filters))
-        .observeOn(AndroidSchedulers.mainThread())
-        .map {
-            titleMapper.map(it.titles ?: throw NullPointerException("Titles is null"))
-        }
+    private val pagerConfig = PagingConfig(
+        pageSize = 10,
+        initialLoadSize = 20,
+        prefetchDistance = 3,
+        enablePlaceholders = false
+    )
 
-    override fun search(query: String, filters: Map<String, List<String>>): Single<List<Title>> =
-        repository.search(query, ProxyRetrofitQueryMap(filters))
-            .observeOn(AndroidSchedulers.mainThread())
-            .map {
-                titleMapper.map(it.titles ?: throw NullPointerException("Titles is null"))
-            }
+    override fun search(query: String, filters: Map<String, List<String>>): Flow<PagingData<Title>> =
+        Pager(pagerConfig, initialKey = 1,
+            pagingSourceFactory = { SearchPagingSource(repository, query, titleMapper) }
+        ).flow
+
+    override fun getTitlesPage(filters: Map<String, List<String>>) : Flow<PagingData<Title>> =
+        Pager(pagerConfig, initialKey = 1,
+            pagingSourceFactory = { TitlePagingSource(repository, ProxyRetrofitQueryMap(filters), titleMapper) }
+        ).flow
 
 }

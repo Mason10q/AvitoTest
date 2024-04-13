@@ -16,5 +16,5 @@ interface TitleListRepository {
 
     fun getAllTypes(): Single<List<FilterDto>>
 
-    fun search(query: String, filters: ProxyRetrofitQueryMap): Single<DocsDto>
+    fun search(pageNum: Int, query: String): Single<DocsDto>
 }

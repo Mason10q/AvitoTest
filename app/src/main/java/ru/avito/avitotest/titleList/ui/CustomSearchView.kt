@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.SearchView
 import androidx.appcompat.widget.AppCompatTextView
@@ -18,12 +19,11 @@ import androidx.core.view.children
 import ru.avito.avitotest.databinding.SearchViewBinding
 
 
-class CustomSearchView(context: Context, attributes: AttributeSet): ConstraintLayout(context, attributes) {
+class CustomSearchView(context: Context, attributes: AttributeSet): FrameLayout(context, attributes) {
 
     private val binding = SearchViewBinding.inflate(LayoutInflater.from(context))
     private var onInputListener: (String) -> Unit = {}
     private val handler = Handler(Looper.getMainLooper())
-    private val imm = getSystemService(context, InputMethodManager::class.java)
 
 
     init {
@@ -32,10 +32,9 @@ class CustomSearchView(context: Context, attributes: AttributeSet): ConstraintLa
             binding.root.layoutParams.width = 600
             binding.searchBar.visibility = VISIBLE
 
-            binding.searchBar.setIconifiedByDefault(true);
-            binding.searchBar.isFocusable = true;
-            binding.searchBar.isIconified = false;
-            binding.searchBar.requestFocusFromTouch();
+            binding.searchBar.setIconifiedByDefault(true)
+            binding.searchBar.isIconified = false
+            binding.searchBar.requestFocus()
         }
 
 
@@ -47,8 +46,6 @@ class CustomSearchView(context: Context, attributes: AttributeSet): ConstraintLa
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) return false
-
                 handler.removeCallbacksAndMessages(null)
 
                 handler.postDelayed({
@@ -64,8 +61,6 @@ class CustomSearchView(context: Context, attributes: AttributeSet): ConstraintLa
             true
         }
 
-
-
         addView(binding.root)
     }
 
@@ -74,11 +69,10 @@ class CustomSearchView(context: Context, attributes: AttributeSet): ConstraintLa
     }
 
     private fun hideSearchView() {
-        binding.searchBar.clearFocus()
-        imm?.hideSoftInputFromWindow(binding.root.windowToken, 0)
-        binding.root.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
         binding.searchBar.visibility = GONE
         binding.searchButton.visibility = VISIBLE
+
+        binding.root.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
     }
 
 }

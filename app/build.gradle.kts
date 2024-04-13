@@ -63,6 +63,8 @@ dependencies {
     implementation(Libs.AndroidX.navigationUiKtx)
     implementation(Libs.AndroidX.navigationFragmentKtx)
     implementation(Libs.AndroidX.splashScreen)
+    implementation(Libs.AndroidX.paging)
+    implementation(Libs.AndroidX.pagingRxJava3)
 
     implementation(Libs.DI.dagger)
     kapt(Libs.DI.daggerCompiler)

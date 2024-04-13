@@ -6,10 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import ru.avito.avitotest.core.di.AndroidModule
 import ru.avito.avitotest.databinding.FragmentTitlesListBinding
 import ru.avito.avitotest.titleList.di.DaggerTitleListComponent
 import ru.avito.avitotest.titleList.ui.TitleListViewModel
+import ru.avito.avitotest.titleList.ui.adapters.FooterLoadStateAdapter
 import ru.avito.avitotest.titleList.ui.adapters.TitleListAdapter
 import javax.inject.Inject
 
@@ -32,14 +36,14 @@ class TitleListFragment : Fragment() {
         inject()
         prepareObservers()
 
-        binding.titlesRecycler.adapter = adapter
+        binding.titlesRecycler.adapter = adapter.withLoadStateFooter(FooterLoadStateAdapter())
 
-        viewModel.getTitlesPage()
         viewModel.getAllFilters()
+        launchTitles()
 
         filterDialog.setOnCancelListener {
             binding.filterButton.isEnabled = true
-            viewModel.getTitlesPage()
+            launchTitles()
         }
 
         binding.filterButton.setOnClickListener{
@@ -47,7 +51,7 @@ class TitleListFragment : Fragment() {
             binding.filterButton.isEnabled = false
         }
 
-        binding.searchButton.setOnInputListener(viewModel::search)
+        binding.searchButton.setOnInputListener(::launchSearch)
 
         return binding.root
     }
@@ -63,9 +67,24 @@ class TitleListFragment : Fragment() {
         }
 
     private fun prepareObservers() {
-        viewModel.titles.observe(viewLifecycleOwner, adapter::setItems)
-        viewModel.filters.observe(viewLifecycleOwner) { filters ->
+        viewModel.filters.observe(viewLifecycleOwner) {
             binding.filterButton.visibility = View.VISIBLE
+        }
+    }
+
+    private fun launchTitles() {
+        lifecycleScope.launch {
+            viewModel.getTitlePageFlow().collect { pagingData ->
+                adapter.submitData(pagingData)
+            }
+        }
+    }
+
+    private fun launchSearch(query: String) {
+        lifecycleScope.launch {
+            viewModel.search(query).collect { pagingData ->
+                adapter.submitData(pagingData)
+            }
         }
     }
 

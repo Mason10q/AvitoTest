@@ -19,6 +19,7 @@ object Versions {
         const val fragments = "1.5.7"
         const val navigation = "2.7.7"
         const val splashScreen = "1.0.0"
+        const val paging = "3.2.1"
     }
 
     object Google {
@@ -54,6 +55,8 @@ object Libs {
         const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}"
         const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}"
         const val splashScreen = "androidx.core:core-splashscreen:${Versions.AndroidX.splashScreen}"
+        const val paging = "androidx.paging:paging-runtime:${Versions.AndroidX.paging}"
+        const val pagingRxJava3 = "androidx.paging:paging-rxjava3:${Versions.AndroidX.paging}"
     }
 
     object Google {
