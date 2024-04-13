@@ -14,7 +14,7 @@ import ru.avito.avitotest.R
 import ru.avito.avitotest.core.ViewModelFactory
 import ru.avito.avitotest.core.di.AndroidModule
 import ru.avito.avitotest.databinding.DialogFilterBinding
-import ru.avito.avitotest.network.FilterTypes
+import ru.avito.avitotest.data.network.FilterTypes
 import ru.avito.avitotest.titleList.di.DaggerTitleListComponent
 import ru.avito.avitotest.titleList.model.entities.FilterName
 import ru.avito.avitotest.titleList.model.entities.RangeFilter

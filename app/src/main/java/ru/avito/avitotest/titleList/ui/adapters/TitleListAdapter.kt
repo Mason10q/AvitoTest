@@ -1,6 +1,5 @@
 package ru.avito.avitotest.titleList.ui.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ru.avito.avitotest.R
-import ru.avito.avitotest.core.BaseAdapter
 import ru.avito.avitotest.databinding.ItemTitleBinding
 import ru.avito.avitotest.titleList.model.entities.Title
 import java.lang.IllegalArgumentException

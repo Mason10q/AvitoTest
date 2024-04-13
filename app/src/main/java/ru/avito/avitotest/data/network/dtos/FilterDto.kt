@@ -1,4 +1,4 @@
-package ru.avito.avitotest.network.dtos
+package ru.avito.avitotest.data.network.dtos
 
 import com.google.gson.annotations.SerializedName
 

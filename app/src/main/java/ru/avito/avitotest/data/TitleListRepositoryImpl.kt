@@ -1,14 +1,14 @@
-package ru.avito.avitotest.titleList.data
+package ru.avito.avitotest.data
 
 import android.util.Log
 import com.google.gson.annotations.SerializedName
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
-import ru.avito.avitotest.network.KinopoiskApi
-import ru.avito.avitotest.network.dtos.DocsDto
-import ru.avito.avitotest.network.dtos.FilterDto
-import ru.avito.avitotest.network.dtos.TitleDto
-import ru.avito.avitotest.network.retrofit.ProxyRetrofitQueryMap
+import ru.avito.avitotest.data.network.KinopoiskApi
+import ru.avito.avitotest.data.network.dtos.DocsDto
+import ru.avito.avitotest.data.network.dtos.FilterDto
+import ru.avito.avitotest.data.network.dtos.TitleDto
+import ru.avito.avitotest.data.network.retrofit.ProxyRetrofitQueryMap
 import javax.inject.Inject
 
 class TitleListRepositoryImpl @Inject constructor(private val api: KinopoiskApi) :

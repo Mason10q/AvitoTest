@@ -1,4 +1,4 @@
-package ru.avito.avitotest.network.di
+package ru.avito.avitotest.data.network.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -12,8 +12,8 @@ import retrofit2.Retrofit.Builder
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.avito.avitotest.BuildConfig
-import ru.avito.avitotest.network.KinopoiskApi
-import ru.avito.avitotest.network.retrofit.buildApi
+import ru.avito.avitotest.data.network.KinopoiskApi
+import ru.avito.avitotest.data.network.retrofit.buildApi
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 

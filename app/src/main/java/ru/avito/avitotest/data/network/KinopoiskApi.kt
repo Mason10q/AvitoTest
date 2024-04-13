@@ -1,13 +1,13 @@
-package ru.avito.avitotest.network
+package ru.avito.avitotest.data.network
 
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
-import ru.avito.avitotest.network.dtos.DocsDto
-import ru.avito.avitotest.network.dtos.FilterDto
-import ru.avito.avitotest.network.retrofit.EndpointUrl
-import ru.avito.avitotest.network.retrofit.ProxyRetrofitQueryMap
+import ru.avito.avitotest.data.network.dtos.DocsDto
+import ru.avito.avitotest.data.network.dtos.FilterDto
+import ru.avito.avitotest.data.network.retrofit.EndpointUrl
+import ru.avito.avitotest.data.network.retrofit.ProxyRetrofitQueryMap
 import androidx.annotation.IntRange
 
 

@@ -6,7 +6,7 @@ import com.squareup.picasso.Picasso
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import ru.avito.avitotest.network.di.NetworkModule
+import ru.avito.avitotest.data.network.di.NetworkModule
 import javax.inject.Singleton
 
 @Module(includes = [NetworkModule::class])

@@ -1,4 +1,4 @@
-package ru.avito.avitotest.network
+package ru.avito.avitotest.data.network
 
 import ru.avito.avitotest.R
 

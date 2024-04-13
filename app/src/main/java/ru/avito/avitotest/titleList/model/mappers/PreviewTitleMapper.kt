@@ -3,7 +3,7 @@ package ru.avito.avitotest.titleList.model.mappers
 import ru.avito.avitotest.titleList.model.entities.Title
 import ru.avito.avitotest.core.Mapper
 import ru.avito.avitotest.core.round
-import ru.avito.avitotest.network.dtos.TitleDto
+import ru.avito.avitotest.data.network.dtos.TitleDto
 import javax.inject.Inject
 
 class PreviewTitleMapper @Inject constructor(): Mapper<Title, TitleDto> {

@@ -1,13 +1,9 @@
 package ru.avito.avitotest.titleList.ui.adapters
 
-import android.content.Context
 import com.google.android.material.slider.RangeSlider
 import com.livermor.delegateadapter.delegate.ViewBindingDelegateAdapter
-import ru.avito.avitotest.core.BaseAdapter
 import ru.avito.avitotest.databinding.ItemRangeFilterBinding
-import ru.avito.avitotest.network.FilterTypes
 import ru.avito.avitotest.titleList.model.entities.RangeFilter
-import java.time.LocalDateTime
 
 class RangeFilterAdapter: ViewBindingDelegateAdapter<RangeFilter, ItemRangeFilterBinding>(ItemRangeFilterBinding::inflate) {
 

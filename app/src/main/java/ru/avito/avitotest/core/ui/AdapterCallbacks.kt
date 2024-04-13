@@ -1,7 +1,5 @@
-package ru.avito.avitotest.core
+package ru.avito.avitotest.core.ui
 
-import android.content.Context
-import android.content.res.Resources
 import android.view.View
 
 interface AdapterCallbacks<DATA, B> {

@@ -1,15 +1,11 @@
 package ru.avito.avitotest.titleList.ui.adapters
 
 import android.content.Context
-import android.view.View
 import androidx.core.content.res.ResourcesCompat
-import androidx.recyclerview.widget.GridLayoutManager
 import com.livermor.delegateadapter.delegate.ViewBindingDelegateAdapter
-import ru.avito.avitotest.core.BaseAdapter
 import ru.avito.avitotest.R
 import ru.avito.avitotest.databinding.ItemFilterBinding
 import ru.avito.avitotest.databinding.ItemFilterGroupBinding
-import ru.avito.avitotest.titleList.model.entities.Filter
 import ru.avito.avitotest.titleList.model.entities.FilterName
 
 class FilterTitleAdapter :

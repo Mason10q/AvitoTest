@@ -1,10 +1,10 @@
-package ru.avito.avitotest.titleList.data
+package ru.avito.avitotest.data
 
 import io.reactivex.rxjava3.core.Single
-import ru.avito.avitotest.network.dtos.DocsDto
-import ru.avito.avitotest.network.dtos.FilterDto
-import ru.avito.avitotest.network.dtos.TitleDto
-import ru.avito.avitotest.network.retrofit.ProxyRetrofitQueryMap
+import ru.avito.avitotest.data.network.dtos.DocsDto
+import ru.avito.avitotest.data.network.dtos.FilterDto
+import ru.avito.avitotest.data.network.dtos.TitleDto
+import ru.avito.avitotest.data.network.retrofit.ProxyRetrofitQueryMap
 
 interface TitleListRepository {
 

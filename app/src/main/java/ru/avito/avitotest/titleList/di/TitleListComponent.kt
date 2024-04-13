@@ -4,7 +4,7 @@ import dagger.Component
 import ru.avito.avitotest.core.di.AndroidModule
 import ru.avito.avitotest.core.di.CoreModule
 import ru.avito.avitotest.titleList.ui.fragments.TitleListFragment
-import ru.avito.avitotest.network.di.NetworkModule
+import ru.avito.avitotest.data.network.di.NetworkModule
 import ru.avito.avitotest.titleList.ui.adapters.TitleListAdapter
 import ru.avito.avitotest.titleList.ui.fragments.FilterDialog
 import javax.inject.Singleton

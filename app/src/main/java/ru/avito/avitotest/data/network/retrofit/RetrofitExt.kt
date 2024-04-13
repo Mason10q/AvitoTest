@@ -1,4 +1,4 @@
-package ru.avito.avitotest.network.retrofit
+package ru.avito.avitotest.data.network.retrofit
 
 import retrofit2.Retrofit
 

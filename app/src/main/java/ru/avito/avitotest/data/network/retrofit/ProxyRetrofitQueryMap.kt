@@ -1,4 +1,4 @@
-package ru.avito.avitotest.network.retrofit
+package ru.avito.avitotest.data.network.retrofit
 
 class ProxyRetrofitQueryMap(private val original: Map<String, List<String>>) : AbstractMap<String, String>() {
     override val entries: Set<Map.Entry<String, String>>

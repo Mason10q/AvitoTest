@@ -3,10 +3,10 @@ package ru.avito.avitotest.titleList.model
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import ru.avito.avitotest.core.Mapper
-import ru.avito.avitotest.network.dtos.FilterDto
-import ru.avito.avitotest.titleList.data.TitleListRepository
+import ru.avito.avitotest.data.network.dtos.FilterDto
+import ru.avito.avitotest.data.TitleListRepository
 import ru.avito.avitotest.titleList.model.entities.Filter
-import ru.avito.avitotest.network.FilterTypes
+import ru.avito.avitotest.data.network.FilterTypes
 import ru.avito.avitotest.titleList.model.entities.FilterName
 import javax.inject.Inject
 

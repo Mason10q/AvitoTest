@@ -1,4 +1,4 @@
-package ru.avito.avitotest.core
+package ru.avito.avitotest.core.di
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
