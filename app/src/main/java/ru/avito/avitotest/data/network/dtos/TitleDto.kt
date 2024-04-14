@@ -8,6 +8,8 @@ data class TitleDto(
     val id: Int?,
     @SerializedName("name")
     val name: String?,
+    @SerializedName("description")
+    val description: String?,
     @SerializedName("alternativeName")
     val alternativeName: String?,
     @SerializedName("type")

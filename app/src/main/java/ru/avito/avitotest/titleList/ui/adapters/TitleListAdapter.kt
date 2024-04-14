@@ -16,6 +16,8 @@ class TitleListAdapter : PagingDataAdapter<Title, TitleListAdapter.ViewHolder>(D
 
     @Inject lateinit var picasso: Picasso
 
+    private var onItemClick: ((Int) -> Unit)? = null
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
 
@@ -29,6 +31,7 @@ class TitleListAdapter : PagingDataAdapter<Title, TitleListAdapter.ViewHolder>(D
                 posterImage.setImageResource(R.drawable.ic_kinopoisk)
             }
 
+            root.setOnClickListener { onItemClick?.invoke(item?.id ?: 0) }
 
             titleName.text = item?.name
             titleRating.text = item?.rating.toString()
@@ -45,6 +48,10 @@ class TitleListAdapter : PagingDataAdapter<Title, TitleListAdapter.ViewHolder>(D
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         ItemTitleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
+
+    fun setOnItemCLickListener(listener: (Int) -> Unit) {
+        this.onItemClick = listener
+    }
 
     inner class ViewHolder(val binding: ItemTitleBinding) : RecyclerView.ViewHolder(binding.root)
 

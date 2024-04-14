@@ -40,6 +40,10 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Text.Title.Big">
+        <item name="android:textSize">@dimen/big_title_text_size</item>
+    </style>
+
     <style name="Text.Additional">
         <item name="android:textSize">@dimen/additional_text_size</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
@@ -57,6 +61,12 @@
         <item name="android:textColor">@color/silver</item>
     </style>
 
+    <style name="Text.Description">
+        <item name="android:textSize">@dimen/description_text_size</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:fontFamily">@font/kinopoisk_lc</item>
+    </style>
+
     <style name="BottomDialog" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/ModalSheet</item>
     </style>
@@ -64,6 +74,7 @@
     <style name="ModalSheet" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/background_dialog_filter</item>
     </style>
+
 
 
 </resources>

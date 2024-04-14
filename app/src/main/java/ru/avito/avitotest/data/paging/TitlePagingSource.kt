@@ -23,9 +23,9 @@ class TitlePagingSource(
 
 
 
-    private fun toLoadResult(data: DocsDto, position: Int): LoadResult<Int, Title> {
+    private fun toLoadResult(data: DocsDto<TitleDto>, position: Int): LoadResult<Int, Title> {
         return LoadResult.Page(
-            data = data.titles?.map { titleMapper.map(it) } ?: emptyList(),
+            data = data.data?.map { titleMapper.map(it) } ?: emptyList(),
             prevKey = if (position == 1) null else position - 1,
             nextKey = if (position == data.total) null else position + 1
         )

@@ -7,5 +7,24 @@
     <fragment
         android:id="@+id/titleListFragment"
         android:name="ru.avito.avitotest.titleList.ui.fragments.TitleListFragment"
-        android:label="TitleListFragment" />
+        android:label="TitleListFragment" >
+        <action
+            android:id="@+id/action_titleListFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/titleFragment"
+        android:name="ru.avito.avitotest.title.ui.TitleFragment"
+        android:label="TitleFragment" >
+
+        <argument
+            android:name="movieid"
+            app:argType="integer"
+            android:defaultValue="0" />
+
+        <action
+            android:id="@+id/action_titleFragment_to_titleListFragment"
+            app:destination="@id/titleListFragment" />
+    </fragment>
 </navigation>

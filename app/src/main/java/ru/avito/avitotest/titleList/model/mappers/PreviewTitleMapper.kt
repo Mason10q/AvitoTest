@@ -10,6 +10,7 @@ class PreviewTitleMapper @Inject constructor(): Mapper<Title, TitleDto> {
 
     override fun map(item: TitleDto): Title =
         Title(
+            item.id ?: 0,
             item.name ?: "",
             item.alternativeName ?: "",
             item.year ?: 1970,

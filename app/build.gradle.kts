@@ -85,4 +85,6 @@ dependencies {
     implementation(Libs.UI.picasso)
 
     implementation(Libs.UI.delegateAdapter)
+
+    implementation(Libs.UI.carousel)
 }

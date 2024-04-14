@@ -9,6 +9,10 @@ import ru.avito.avitotest.data.network.dtos.FilterDto
 import ru.avito.avitotest.data.network.retrofit.EndpointUrl
 import ru.avito.avitotest.data.network.retrofit.ProxyRetrofitQueryMap
 import androidx.annotation.IntRange
+import retrofit2.http.Path
+import ru.avito.avitotest.data.network.dtos.PosterDto
+import ru.avito.avitotest.data.network.dtos.ReviewDto
+import ru.avito.avitotest.data.network.dtos.TitleDto
 
 
 @EndpointUrl("https://api.kinopoisk.dev/")
@@ -19,7 +23,7 @@ interface KinopoiskApi {
         @Query("limit") @IntRange(from = 1, to = MAX_PAGE_SIZE.toLong()) pageSize: Int = DEFAULT_PAGE_SIZE,
         @QueryMap filters: ProxyRetrofitQueryMap? = null,
         @Query("selectFields") fields: List<String>? = null
-    ): Single<DocsDto>
+    ): Single<DocsDto<TitleDto>>
 
     @GET("v1/movie/possible-values-by-field")
     fun getFilters(@Query("field") filterType: String): Single<List<FilterDto>>
@@ -29,7 +33,16 @@ interface KinopoiskApi {
         @Query("page") @IntRange(from = 1) page: Int = 1,
         @Query("limit") @IntRange(from = 1, to = MAX_PAGE_SIZE.toLong()) pageSize: Int = DEFAULT_PAGE_SIZE,
         @Query("query") query: String,
-    ): Single<DocsDto>
+    ): Single<DocsDto<TitleDto>>
+
+    @GET("v1.4/movie/{id}")
+    fun getTitleById(@Path("id") id: Int): Single<TitleDto>
+
+    @GET("v1.4/review")
+    fun getReviewsByTitleId(@Query("movieId") id: Int, @Query("selectFields") fields: List<String>? = null): Single<DocsDto<ReviewDto>>
+
+    @GET("v1.4/image")
+    fun getPostersByTitleId(@Query("movieId") id: List<String>, @Query("selectFields") fields: List<String>? = null): Single<DocsDto<PosterDto>>
 
     companion object {
         const val DEFAULT_PAGE_SIZE = 10
