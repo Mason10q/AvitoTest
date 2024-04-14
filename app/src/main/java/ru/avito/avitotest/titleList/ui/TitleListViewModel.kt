@@ -18,13 +18,12 @@ class TitleListViewModel @Inject constructor(
     private val filterUseCase: FilterUseCase
 ): ViewModel() {
 
-    private val _titles = MutableLiveData<List<Title>>()
-    val titles: LiveData<List<Title>> = _titles
-
     private val _filters = MutableLiveData<List<Filter>>()
     val filters: LiveData<List<Filter>> = _filters
 
     private val filtersMap = HashMap<String, MutableList<String>>()
+
+    private val rangeMap = HashMap<String, List<Float>>()
 
     fun getTitlePageFlow() = titleUseCase.getTitlesPage(filtersMap)
         .cachedIn(viewModelScope)
@@ -50,9 +49,12 @@ class TitleListViewModel @Inject constructor(
         filtersMap[key]?.remove(value)
     }
 
-    fun addRangeFilter(key: String, value: String) {
-        filtersMap[key] = mutableListOf(value)
+    fun addRangeFilter(key: String, values: List<Float>) {
+        rangeMap[key] = values
+        filtersMap[key] = mutableListOf("${values[0]}-${values[1]}")
     }
 
     fun getFilterMap(): Map<String, List<String>> = filtersMap
+
+    fun getRangeMap(): Map<String, List<Float>> = rangeMap
 }

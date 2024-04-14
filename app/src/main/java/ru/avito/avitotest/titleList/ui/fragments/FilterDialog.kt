@@ -92,6 +92,7 @@ class FilterDialog : BottomSheetDialogFragment() {
         val adapter = FilterCompositeAdapter(filterAdapter, rangeFilterAdapter)
 
         filterAdapter.setCheckedItems(viewModel.getFilterMap())
+        rangeFilterAdapter.setSavedRanges(viewModel.getRangeMap())
 
         filterAdapter.setOnItemClickListener{ filterName, checked ->
             if (checked) {
@@ -105,7 +106,9 @@ class FilterDialog : BottomSheetDialogFragment() {
 
         binding.filterGroupRecycler.addItemDecoration(SpaceItemDecorator(resources.getDimensionPixelOffset(R.dimen.item_space)))
 
-        rangeFilterAdapter.setOnRangeChangedListener(viewModel::addRangeFilter)
+        rangeFilterAdapter.setOnRangeChangedListener { key, values ->
+            viewModel.addRangeFilter(key, values)
+        }
 
         viewModel.filters.observe(this) { filters ->
             adapter.swapData(filters + rangeFilters)
