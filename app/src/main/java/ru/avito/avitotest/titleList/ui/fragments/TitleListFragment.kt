@@ -58,6 +58,16 @@ class TitleListFragment : Fragment() {
             findNavController().navigate(R.id.titleFragment, bundleOf("movieid" to id))
         }
 
+        adapter.addLoadStateListener { loadState ->
+            if(loadState.prepend.endOfPaginationReached){
+                if(adapter.itemCount < 1) {
+                    binding.emptyList.root.visibility = View.VISIBLE
+                } else {
+                    binding.emptyList.root.visibility = View.GONE
+                }
+            }
+        }
+
         binding.searchButton.setOnInputListener(::launchSearch)
 
         return binding.root

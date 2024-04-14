@@ -32,7 +32,7 @@ class FilterDialog : BottomSheetDialogFragment() {
     private val rangeFilters = listOf(
         RangeFilter(FilterTypes.YEARS.title, FilterTypes.YEARS.serverName, 1970.0f, LocalDateTime.now().year.toFloat(), 1.0f),
         RangeFilter(FilterTypes.RATING.title, FilterTypes.RATING.serverName, 1.0f, 9.0f, 0.1f),
-        RangeFilter(FilterTypes.AGE_RATING.title, FilterTypes.AGE_RATING.serverName, 0.0f, 21.0f, 1.0f),
+        RangeFilter(FilterTypes.AGE_RATING.title, FilterTypes.AGE_RATING.serverName, 0.0f, 18.0f, 1.0f),
         RangeFilter(FilterTypes.MOVIE_LENGTH.title, FilterTypes.MOVIE_LENGTH.serverName, 10.0f, 300.0f, 1.0f)
     )
 
