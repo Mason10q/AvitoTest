@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/MatchParent">
 
-
-    <com.aemerse.slider.ImageCarousel
-        android:id="@+id/carousel"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:showNavigationButtons="false"
-        app:infiniteCarousel="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/name"/>
+    <LinearLayout
+        style="@style/MatchParent"
+        android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/name"
-        style="@style/Text.Title"
-        android:text="1 + 1"
-        android:gravity="center"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/description"/>
+        <com.aemerse.slider.ImageCarousel
+            android:id="@+id/carousel"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:showNavigationButtons="false"
+            app:infiniteCarousel="true"/>
 
-    <TextView
-        android:id="@+id/description"
-        style="@style/Text.Description"
-        android:text="описание описание описание"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name" />
 
+        <TextView
+            android:id="@+id/name"
+            style="@style/Text.Title"
+            android:text="1 + 1"
+            android:gravity="center"
+            android:textSize="40sp"/>
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/Text.Additional.Silver"
+            android:text="описание описание описание" />
+
+
+        <Button
+            android:id="@+id/reviews"
+            style="@style/MatchParentWrapContent"
+            android:text="Отзывы"/>
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</ScrollView>

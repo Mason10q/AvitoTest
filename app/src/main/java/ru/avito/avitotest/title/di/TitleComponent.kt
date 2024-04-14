@@ -4,6 +4,7 @@ import dagger.Component
 import ru.avito.avitotest.core.di.AndroidModule
 import ru.avito.avitotest.core.di.CoreModule
 import ru.avito.avitotest.data.network.di.NetworkModule
+import ru.avito.avitotest.title.ui.ReviewsFragment
 import ru.avito.avitotest.title.ui.TitleFragment
 import ru.avito.avitotest.titleList.di.TitleListComponent
 import ru.avito.avitotest.titleList.di.TitleListModule
@@ -18,6 +19,8 @@ import javax.inject.Singleton
 interface TitleComponent {
 
     fun inject(fragment: TitleFragment)
+
+    fun inject(fragment: ReviewsFragment)
 
     @Component.Builder
     interface Builder {

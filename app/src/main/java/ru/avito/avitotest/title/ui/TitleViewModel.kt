@@ -3,6 +3,8 @@ package ru.avito.avitotest.title.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import ru.avito.avitotest.title.model.TitleUseCase
 import ru.avito.avitotest.title.model.entities.Poster
 import ru.avito.avitotest.title.model.entities.Title
@@ -29,5 +31,7 @@ class TitleViewModel @Inject constructor(private val titleUseCase: TitleUseCase)
            _posters.postValue(it)
         }, {})
 
+    fun getReviewDataFlow() = titleUseCase.getReviewFLowByTitleId(titleId)
+        .cachedIn(viewModelScope)
 
 }

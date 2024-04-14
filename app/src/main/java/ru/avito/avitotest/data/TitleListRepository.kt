@@ -24,7 +24,7 @@ interface TitleListRepository {
 
     fun getTitleById(id: Int): Single<TitleDto>
 
-    fun getReviewsByTitleId(id: Int): Single<DocsDto<ReviewDto>>
+    fun getReviewsByTitleId(pageNum: Int, id: Int): Single<DocsDto<ReviewDto>>
 
     fun getPostersByTitleId(id: List<String>): Single<DocsDto<PosterDto>>
 }

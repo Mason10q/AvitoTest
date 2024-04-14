@@ -1,6 +1,7 @@
 package ru.avito.avitotest.titleList.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,18 +32,22 @@ class TitleListFragment : Fragment() {
 
     private val viewModel by lazy { ViewModelProvider(requireActivity(), factory)[TitleListViewModel::class.java] }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        inject()
+
+        viewModel.getAllFilters()
+        launchTitles()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        inject()
-        prepareObservers()
 
         binding.titlesRecycler.adapter = adapter.withLoadStateFooter(FooterLoadStateAdapter())
-
-        viewModel.getAllFilters()
-        launchTitles()
 
         filterDialog.setOnCancelListener {
             binding.filterButton.isEnabled = true
@@ -83,11 +88,6 @@ class TitleListFragment : Fragment() {
             inject(adapter)
         }
 
-    private fun prepareObservers() {
-        viewModel.filters.observe(viewLifecycleOwner) {
-            binding.filterButton.visibility = View.VISIBLE
-        }
-    }
 
     private fun launchTitles() {
         lifecycleScope.launch {

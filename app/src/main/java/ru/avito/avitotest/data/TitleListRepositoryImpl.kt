@@ -37,8 +37,8 @@ class TitleListRepositoryImpl @Inject constructor(private val api: KinopoiskApi)
     override fun getTitleById(id: Int): Single<TitleDto> = api.getTitleById(id)
         .subscribeOn(Schedulers.io())
 
-    override fun getReviewsByTitleId(id: Int): Single<DocsDto<ReviewDto>> =
-        api.getReviewsByTitleId(id, getSerializedNames(ReviewDto::class.java))
+    override fun getReviewsByTitleId(pageNum: Int, id: Int): Single<DocsDto<ReviewDto>> =
+        api.getReviewsByTitleId(pageNum, id= id, fields = getSerializedNames(ReviewDto::class.java))
             .subscribeOn(Schedulers.io())
 
     override fun getPostersByTitleId(id: List<String>): Single<DocsDto<PosterDto>> =
