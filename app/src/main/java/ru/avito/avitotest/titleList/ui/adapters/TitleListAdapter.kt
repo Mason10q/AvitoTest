@@ -2,6 +2,7 @@ package ru.avito.avitotest.titleList.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getColor
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -42,6 +43,18 @@ class TitleListAdapter : PagingDataAdapter<Title, TitleListAdapter.ViewHolder>(D
             } else {
                 titleNameYear.text = item.year.toString()
             }
+
+            if(item?.rating != null) {
+                titleRating.setBackgroundColor(
+                    when (item.rating) {
+                        in 7.0..9.0 -> getColor(root.context, R.color.green)
+                        in 4.0.rangeUntil(7.00) -> getColor(root.context, R.color.orange)
+                        in 0.0.rangeUntil(4.0) -> getColor(root.context, R.color.red)
+                        else -> getColor(root.context, R.color.gray)
+                    }
+                )
+            }
+
         }
     }
 
